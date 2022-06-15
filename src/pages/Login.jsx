@@ -7,6 +7,15 @@ import PICT1 from '../images/login.png';
 
 export default function Login() {
     const navigate = useNavigate();
+    const styleLabel = {
+        borderRadius: '10px',
+    };
+
+    const styleLink = {
+        textDecoration: 'none',
+        color: '#7126B5',
+        fontWeight: 'bold'
+    }
 
     const emailField = useRef("");
     const passwordField = useRef("");
@@ -52,39 +61,41 @@ export default function Login() {
     return (
         <Container fluid="true">
             <Row >
-                <Col>
-                    <img src={PICT1} alt="Girl in a jacket" width="720px" height="950px" />
+                <Col className="login-left">
+                    <img src={PICT1} alt="Second Hand" width="100%" height="100%" />
                 </Col>
-                <Col className="justify-content-md-center">
-                    <div className="formlogin">
-                    <h1 className="mb-3">Masuk</h1>
-                    <Form onSubmit={onLogin}>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control
-                                type="text"
-                                ref={emailField}
-                                placeholder="Masukkan Email"
-                            />
-                        </Form.Group>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control
-                                type="password"
-                                ref={passwordField}
-                                placeholder="Masukkan Password"
-                            />
-                        </Form.Group>
-                        {errorResponse.isError && (
-                            <Alert variant="danger">{errorResponse.message}</Alert>
-                        )}
-                        <Button className="w-100" type="submit">
-                            Masuk
-                        </Button>
-                        <p>
-                            Belum punya akun?  <Link to="/register">Daftar di sini</Link>
-                        </p>
-                    </Form>
+                <Col className="rounded-pill">
+                    <div className="login-right">
+                        <h1 className="mb-3">Masuk</h1>
+                        <Form onSubmit={onLogin}>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    ref={emailField}
+                                    placeholder="Masukkan Email"
+                                    style={styleLabel}
+                                />
+                            </Form.Group>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control
+                                    type="password"
+                                    ref={passwordField}
+                                    placeholder="Masukkan Password"
+                                    style={styleLabel}
+                                />
+                            </Form.Group>
+                            {errorResponse.isError && (
+                                <Alert variant="danger">{errorResponse.message}</Alert>
+                            )}
+                            <Button style={styleLabel} className="w-100" type="submit">
+                                Masuk
+                            </Button>
+                            <p>
+                                Belum punya akun?  <Link style={styleLink} to="/register">Daftar di sini</Link>
+                            </p>
+                        </Form>
                     </div>
                 </Col>
             </Row>
