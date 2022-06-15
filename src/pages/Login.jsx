@@ -2,11 +2,12 @@ import { useRef, useState } from "react";
 import { Form, Button, Alert, Row, Container, Col, } from "react-bootstrap";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import "../css/login.css"
+import "../css/style.css"
 import PICT1 from '../images/login.png';
 
 export default function Login() {
     const navigate = useNavigate();
+
     const styleLabel = {
         borderRadius: '10px',
     };
@@ -64,7 +65,7 @@ export default function Login() {
                 <Col className="login-left">
                     <img src={PICT1} alt="Second Hand" width="100%" height="100%" />
                 </Col>
-                <Col className="rounded-pill">
+                <Col>
                     <div className="login-right">
                         <h1 className="mb-3">Masuk</h1>
                         <Form onSubmit={onLogin}>
