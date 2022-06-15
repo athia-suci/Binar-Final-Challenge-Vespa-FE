@@ -28,7 +28,7 @@ export default function Register() {
             };
 
             const registerRequest = await axios.post(
-                "http://localhost:2000/auth/register",
+                "http://localhost:2000/v1/register",
                 userToRegisterPayload
             );
 
