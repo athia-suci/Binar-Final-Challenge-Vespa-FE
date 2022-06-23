@@ -1,4 +1,7 @@
-.row {
+/********************
+ * Register
+ ********************/
+ .row {
     position:absolute;
     width: 100%;
     height: 100%;
@@ -15,14 +18,23 @@
 .register-right {
     margin: 100px;
 }
+
+/* .register-right {
+  margin-top: 100px;
+  margin-left: 180px;
+} */
+
 .register-right h3 {
     font-weight: bold;
 }
+
 .register-right button {
     background-color: #7126B5;
     border-color: #7126B5;
     margin-top: 16px;
 }
+
+
 @media screen and (max-width: 1023px) {
     .register-left {
       display: none; 
@@ -34,38 +46,50 @@
         padding-top: 90px;
     }
 }
+
+/********************
+ * Navbar
+ ********************/
 .logo {
     width: 100px;
     height: 34px;
     background-color: #4B1979;
 }
+
 .navbar {
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.1);
 }
+
 .search-icon {
     position: absolute;
     margin-left: 85%;
     margin-top: 7px;
     color: #8A8A8A;
 }
+
 .button-register {
     background: #7126B5;
     border-color: #7126B5;
     border-radius: 12px;
 }
+
 .icon-register {
     margin: 8px 10px 8px 0;
 }
+
 .icon-list-header, .icon-bell-header, .icon-user-header {
     margin: 5px;
     font-size: large;
 }
+
 .dropdown-toggle::after {
     display: none !important;
 }
+
 #off-canvas {
     width: 50%;
 }
+
 .title-navbar-mobile {
     font-weight: bold;
 }
@@ -81,6 +105,11 @@
         background-color: white;
     }
 }
+
+
+/********************
+ * Home-carousel
+ ********************/
  .slider .owl-theme .owl-nav { 
     display: none; 
 } 
@@ -181,6 +210,12 @@
 
 }
 
+
+
+
+
+   
+/* carousel product */ 
 .slider-product .owl-theme .owl-dots { 
   position: absolute; 
   top: 90%; 
@@ -227,6 +262,12 @@
   border: 1px solid rgba(113, 38, 181, 1); 
 }
 
+
+
+
+  /********************
+ * Home-category
+ ********************/
 .category div button.button-sell { 
   width: 25%; 
   margin: 0 37.5%; 
@@ -240,6 +281,10 @@
   width: 0; 
 }
 
+
+/********************
+ * Navbar-card
+ ********************/
 .card-content { 
   display: grid; 
   grid-template-columns: auto auto auto auto auto auto; 
