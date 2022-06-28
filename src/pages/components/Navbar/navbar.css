@@ -4,5 +4,8 @@
     background-color: #4B1979;
 }
 .outline-dark{
-    color: rgb(111, 177, 235);
+    color: rgb(0, 0, 0);
+}
+.icon-logout{
+    margin-right: 10 px;
 }
