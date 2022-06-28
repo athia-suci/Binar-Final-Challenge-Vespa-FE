@@ -5,19 +5,10 @@ import { Link, useNavigate } from "react-router-dom";
 import "../css/style.css"
 import PICT1 from '../images/login.png';
 
-export default function Login() {
+export default function Register() {
     const navigate = useNavigate();
 
-    const styleLabel = {
-        borderRadius: '10px',
-    };
-
-    const styleLink = {
-        textDecoration: 'none',
-        color: '#7126B5',
-        fontWeight: 'bold'
-    }
-
+    const nameField = useRef("");
     const emailField = useRef("");
     const passwordField = useRef("");
 
@@ -26,27 +17,24 @@ export default function Login() {
         message: "",
     });
 
-    const onLogin = async (e) => {
+    const onRegister = async (e) => {
         e.preventDefault();
 
         try {
-            const userToLoginPayload = {
+            const userToRegisterPayload = {
+                name: nameField.current.value,
                 email: emailField.current.value,
                 password: passwordField.current.value,
             };
 
-            const loginRequest = await axios.post(
-                "http://localhost:2000/v1/login",
-                userToLoginPayload
+            const registerRequest = await axios.post(
+                "http://localhost:2000/v1/register",
+                userToRegisterPayload
             );
 
-            const loginResponse = loginRequest.data;
+            const registerResponse = registerRequest.data;
 
-            if (loginResponse.status) {
-                localStorage.setItem("token", loginResponse.data.token);
-
-                navigate("/");
-            }
+            if (registerResponse.status) navigate("/login");
         } catch (err) {
             console.log(err);
             const response = err.response.data;
@@ -58,23 +46,41 @@ export default function Login() {
         }
     };
 
+    const styleLabel = {
+        borderRadius: '10px',
+    };
+
+    const styleLink = {
+        textDecoration: 'none',
+        color: '#7126B5',
+        fontWeight: 'bold',
+    }
 
     return (
         <Container fluid="true">
             <Row >
-                <Col className="login-left">
+                <Col className="regist-left">
                     <img src={PICT1} alt="Second Hand" width="100%" height="100%" />
                 </Col>
-                <Col>
-                    <div className="login-right">
-                        <h1 className="mb-3">Masuk</h1>
-                        <Form onSubmit={onLogin}>
+                <Col >
+                    <div className="regist-right">
+                        <h1 className="mb-3">Daftar</h1>
+                        <Form onSubmit={onRegister}>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Nama</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    ref={nameField}
+                                    placeholder="Nama Lengkap"
+                                    style={styleLabel}
+                                />
+                            </Form.Group>
                             <Form.Group className="mb-3">
                                 <Form.Label>Email</Form.Label>
                                 <Form.Control
                                     type="text"
                                     ref={emailField}
-                                    placeholder="Masukkan Email"
+                                    placeholder="Contoh: johndee@gmail.com"
                                     style={styleLabel}
                                 />
                             </Form.Group>
@@ -90,11 +96,11 @@ export default function Login() {
                             {errorResponse.isError && (
                                 <Alert variant="danger">{errorResponse.message}</Alert>
                             )}
-                            <Button style={styleLabel} className="w-100" type="submit">
-                                Masuk
+                            <Button className="w-100" type="submit" style={styleLabel}>
+                                Daftar
                             </Button>
-                            <p>
-                                Belum punya akun?  <Link style={styleLink} to="/register">Daftar di sini</Link>
+                            <p className="m-4 text-center">
+                                Sudah punya akun? <Link style={styleLink} to="/login">Masuk di sini</Link>
                             </p>
                         </Form>
                     </div>
