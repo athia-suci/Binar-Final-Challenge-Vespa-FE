@@ -20,11 +20,32 @@ function About() {
         message: "",
     });
 
+    
+    const getUsers = async () => {
+        try {
+            const token = localStorage.getItem("token");
+            const responseUsers = await axios.get(`http://localhost:2000/v1/users`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+            console.log(responseUsers.data.data);
+            const dataUsers = await responseUsers.data.data;
+
+            setData(dataUsers)
+            console.log(dataUsers);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     const onUpdate = async (e) => {
         e.preventDefault();
 
         try {
             const token = localStorage.getItem("token");
+            
             const userToUpdatePayload = new FormData();
             userToUpdatePayload.append("name", nameField.current.value);
             userToUpdatePayload.append("kota", kotaField.current.value);
@@ -57,24 +78,6 @@ function About() {
         }
     };
 
-    const getUsers = async () => {
-        try {
-            const token = localStorage.getItem("token");
-            const responseUsers = await axios.get(`http://localhost:2000/v1/users`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
-            console.log(responseUsers.data.data);
-            const dataUsers = await responseUsers.data.data;
-
-            setData(dataUsers)
-            console.log(dataUsers);
-        } catch (err) {
-            console.log(err);
-        }
-    }
 
     useEffect(() => {
         getUsers();
