@@ -55,7 +55,7 @@ function About() {
 
 
             const updateRequest = await axios.put(
-                `http://localhost:2000/v1/updateUser/${data.id}`,
+                `http://localhost:2000/v1/updateUsers/${data.id}`,
                 userToUpdatePayload,
                 {
                     headers: {
