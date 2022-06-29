@@ -10,17 +10,17 @@ function About() {
     const [data, setData] = useState([]);
     const { id } = useParams();
     const nameField = useRef("");
-    const kotaField = useRef("");
-    const alamatField = useRef("");
-    const noHpField = useRef("");
-    const [imageField, setimageField] = useState();
+    const townField = useRef("");
+    const addressField = useRef("");
+    const phoneField = useRef("");
+    const [pictureField, setpictureField] = useState();
 
     const [errorResponse, setErrorResponse] = useState({
         isError: false,
         message: "",
     });
 
-    
+
     const getUsers = async () => {
         try {
             const token = localStorage.getItem("token");
@@ -45,17 +45,17 @@ function About() {
 
         try {
             const token = localStorage.getItem("token");
-            
+
             const userToUpdatePayload = new FormData();
             userToUpdatePayload.append("name", nameField.current.value);
-            userToUpdatePayload.append("kota", kotaField.current.value);
-            userToUpdatePayload.append("alamat", alamatField.current.value);
-            userToUpdatePayload.append("noHp", noHpField.current.value);
-            userToUpdatePayload.append("image", imageField);
+            userToUpdatePayload.append("town", townField.current.value);
+            userToUpdatePayload.append("address", addressField.current.value);
+            userToUpdatePayload.append("phone", phoneField.current.value);
+            userToUpdatePayload.append("picture", pictureField);
 
 
             const updateRequest = await axios.put(
-                `http://localhost:2000/v1/updateUsers/${id}`,
+                `http://localhost:2000/v1/updateUser/${data.id}`,
                 userToUpdatePayload,
                 {
                     headers: {
@@ -117,9 +117,9 @@ function About() {
                             />
                         </h2>
                         <Form.Control type="file" className="formCamera" onChange={(e) => {
-                            console.log(e.target.files[0]);
-                            setimageField(e.target.files[0])
-                        }} />
+                           
+                            setpictureField(e.target.files[0])
+                        }}  />
                     </button>
                     <Form className="border1 mb-3">
                         <Form.Label>Nama*</Form.Label>
@@ -127,9 +127,9 @@ function About() {
                     </Form>
                     <Form.Group className="mb-3">
                         <Form.Label>Kota*</Form.Label>
-                        <select ref={kotaField} className="form-select">
-                            <option hidden>Pilih Kota</option>
-                            <option value="DKIJakarta">DKI Jakarta</option>
+                        <select ref={townField} className="form-select">
+                            <option defaultValue={data.town} hidden>Pilih Kota</option>
+                            <option value="DKI-Jakarta">DKI Jakarta</option>
                             <option value="JawaBarat">Jawa Barat</option>
                             <option value="JawaTengah">Jawa Tengah</option>
                             <option value="JawaTimur">Jawa Timur</option>
@@ -143,7 +143,8 @@ function About() {
                         <Form.Label>Alamat*</Form.Label>
                         <Form.Control
                             type="text"
-                            ref={alamatField}
+                            ref={addressField}
+                            defaultValue={data.address}
                             placeholder="Contoh: Jalan Ikan Hiu 33"
                             as="textarea"
                             rows={3}
@@ -153,7 +154,8 @@ function About() {
                         <Form.Label>No Handphone*</Form.Label>
                         <Form.Control
                             type="text"
-                            ref={noHpField}
+                            ref={phoneField}
+                            defaultValue={data.phone}
                             placeholder="contoh: +628123456789"
                         />
                     </Form.Group>
