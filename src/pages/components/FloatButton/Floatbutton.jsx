@@ -10,7 +10,7 @@ export function FloatButton() {
     };
     
     return (
-        <Button style={colourButton} className="ms-auto pe-4 radius-secondary floating-button bg-color-tertiary border-0">
+        <Button href="/buatproduk" className="ms-auto pe-4 radius-secondary floating-button bg-color-tertiary border-0">
             <FiPlus className="mx-2 mb-1" />
             Jual
         </Button>
