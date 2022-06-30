@@ -1,0 +1,22 @@
+/* #btn-category Button {
+    cursor: pointer;
+    color: #E2D4F0
+    ;
+}
+
+#btn-category .active,
+Button:hover {
+    background-color: #7126B5
+} */
+
+.cut-text {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 130px;
+    height: 1.2em;
+    white-space: nowrap;
+}
+
+.rowcard{
+    margin-bottom: 50 px;
+}
