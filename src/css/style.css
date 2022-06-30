@@ -1,5 +1,4 @@
-
-.body{
+.body {
     font-family: Poppins;
 }
 
@@ -38,10 +37,10 @@
 }
 
 .regist-right {
-     margin-top: 20%;
+    margin-top: 20%;
     margin-bottom: 20%;
     margin-left: 20%;
-    margin-right: 20%;  
+    margin-right: 20%;
 }
 
 .regist-right p {
@@ -54,7 +53,7 @@
     font-size: 24px;
     color: black;
     font-weight: 700;
-} 
+}
 
 /* Home */
 
@@ -62,7 +61,7 @@
 /* produk */
 
 
-.cari-produk{
+.cari-produk {
 
     position: relative;
 
@@ -98,7 +97,7 @@
 }
 
 
-.nav-item-list{
+.nav-item-list {
 
 
     background-repeat: no-repeat !important;
@@ -110,7 +109,7 @@
 }
 
 
-.nav-item-notification{
+.nav-item-notification {
 
     background-repeat: no-repeat !important;
 
@@ -121,7 +120,7 @@
 }
 
 
-.nav-item-user{
+.nav-item-user {
 
 
     background-repeat: no-repeat !important;
@@ -132,7 +131,7 @@
 
 
 
-.carousel-item{
+.carousel-item {
 
     width: 600px;
 
@@ -141,13 +140,13 @@
 }
 
 
-.carousel-inner{
+.carousel-inner {
 
     width: 600px;
 
 }
 
-.btn-terbitakan{
+.btn-terbitakan {
 
     display: flex;
 
@@ -182,7 +181,7 @@
 }
 
 
-.btn-edit{
+.btn-edit {
 
     box-sizing: border-box;
 
@@ -225,6 +224,7 @@
     border-radius: 16px;
 
 }
+
 /* infoprofile */
 
 
@@ -293,5 +293,3 @@
     border: none;
     border-radius: 12px;
 }
-
-
