@@ -10,6 +10,10 @@ const colourButton = {
     borderRadius: '10px',
 };
 
+const formBorder = {
+    borderRadius: '16px',
+};
+
 function About() {
     const navigate = useNavigate();
     const [data, setData] = useState([]);
@@ -60,7 +64,7 @@ function About() {
 
 
             const updateRequest = await axios.put(
-                `http://localhost:2000/v1/updateUsers/${data.id}`,
+                `http://localhost:2000/v1/users/${data.id}`,
                 userToUpdatePayload,
                 {
                     headers: {
@@ -124,30 +128,27 @@ function About() {
                         <Form.Control type="file" className="formCamera" onChange={(e) => {
                             setpictureField(e.target.files[0])
                         }} />
-                        
+
                     </button>
                     <Form className="border1 mb-3">
                         <Form.Label>Nama*</Form.Label>
-                        <Form.Control type="text" ref={nameField} defaultValue={data.name} />
+                        <Form.Control style={formBorder} type="text" ref={nameField} defaultValue={data.name} />
                     </Form>
                     <Form.Group className="mb-3">
                         <Form.Label>Kota*</Form.Label>
-                        <select ref={townField} className="form-select">
-                            <option defaultValue={data.town} hidden>Pilih Kota</option>
-                            <option value="DKI-Jakarta">DKI Jakarta</option>
-                            <option value="JawaBarat">Jawa Barat</option>
-                            <option value="JawaTengah">Jawa Tengah</option>
-                            <option value="JawaTimur">Jawa Timur</option>
-                            <option value="KalimantanTengah">Kalimantan Tengah</option>
-                            <option value="KalimantanTimur">Kalimantan Timur</option>
-                            <option value="KalimantanSelatan">Kalimantan Selatan</option>
-                            <option value="KalimantanBarat">Kalimantan Barat</option>
+                        <select style={formBorder} defaultValue={data.town} className="form-select">
+                            <option hidden>Pilih Kota</option>
+                            <option ref={townField} selected={data.town === "dkijakarta" ? "selected" : ""} value="dkijakarta">DKI Jakarta</option>
+                            <option ref={townField} selected={data.town === "jawabarat" ? "selected" : ""} value="jawabarat">Jawa Barat</option>
+                            <option ref={townField} selected={data.town === "jawatengah" ? "selected" : ""} value="jawatengah">Jawa Tengah</option>
+                            <option ref={townField} selected={data.town === "jawatimur" ? "selected" : ""} value="jawatimur">Jawa Timur</option>
                         </select>
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Alamat*</Form.Label>
                         <Form.Control
                             type="text"
+                            style={formBorder}
                             ref={addressField}
                             defaultValue={data.address}
                             placeholder="Contoh: Jalan Ikan Hiu 33"
@@ -159,6 +160,7 @@ function About() {
                         <Form.Label>No Handphone*</Form.Label>
                         <Form.Control
                             type="text"
+                            style={formBorder}
                             ref={phoneField}
                             defaultValue={data.phone}
                             placeholder="contoh: +628123456789"
