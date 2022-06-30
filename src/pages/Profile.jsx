@@ -5,6 +5,11 @@ import { FiCamera, FiArrowLeft } from "react-icons/fi";
 import axios from "axios";
 import "../css/style.css";
 
+const colourButton = {
+    backgroundColor: '#7126B5',
+    borderRadius: '10px',
+};
+
 function About() {
     const navigate = useNavigate();
     const [data, setData] = useState([]);
@@ -119,7 +124,7 @@ function About() {
                         <Form.Control type="file" className="formCamera" onChange={(e) => {
                             setpictureField(e.target.files[0])
                         }} />
-
+                        
                     </button>
                     <Form className="border1 mb-3">
                         <Form.Label>Nama*</Form.Label>
@@ -162,7 +167,8 @@ function About() {
                     {errorResponse.isError && (
                         <Alert variant="danger">{errorResponse.message}</Alert>
                     )}
-                    <Button href="/" className="myButton6 w-100" type="submit">
+
+                    <Button style={colourButton} className="myButton6 w-100" type="submit">
                         Simpan
                     </Button>
                 </Form>
