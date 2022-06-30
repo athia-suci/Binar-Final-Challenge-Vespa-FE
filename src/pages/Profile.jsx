@@ -168,7 +168,7 @@ function About() {
                         <Alert variant="danger">{errorResponse.message}</Alert>
                     )}
 
-                    <Button style={colourButton} href="/" className="myButton6 w-100" type="submit">
+                    <Button style={colourButton} className="myButton6 w-100" type="submit">
                         Simpan
                     </Button>
                 </Form>
