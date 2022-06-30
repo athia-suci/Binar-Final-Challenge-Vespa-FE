@@ -117,9 +117,9 @@ function About() {
                             />
                         </h2>
                         <Form.Control type="file" className="formCamera" onChange={(e) => {
-                           
                             setpictureField(e.target.files[0])
-                        }}  />
+                        }} />
+
                     </button>
                     <Form className="border1 mb-3">
                         <Form.Label>Nama*</Form.Label>
@@ -162,7 +162,7 @@ function About() {
                     {errorResponse.isError && (
                         <Alert variant="danger">{errorResponse.message}</Alert>
                     )}
-                    <Button className="myButton6 w-100" type="submit">
+                    <Button href="/" className="myButton6 w-100" type="submit">
                         Simpan
                     </Button>
                 </Form>
