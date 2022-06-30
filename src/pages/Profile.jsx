@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Nav, Navbar, Form, Container, Button, Alert } from "react-bootstrap";
-import { useNavigate, Link, useParams } from "react-router-dom";
+import { useNavigate, Link, useParams, Navigate } from "react-router-dom";
 import { FiCamera, FiArrowLeft } from "react-icons/fi";
 import axios from "axios";
 import "../css/style.css";
@@ -16,6 +16,8 @@ const formBorder = {
 
 function About() {
     const navigate = useNavigate();
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [user, setUser] = useState({});
     const [data, setData] = useState([]);
     const { id } = useParams();
     const nameField = useRef("");
@@ -89,10 +91,37 @@ function About() {
 
 
     useEffect(() => {
+        const fetchData = async () => {
+            try {
+                // Check status user login
+                // 1. Get token from localStorage
+                const token = localStorage.getItem("token");
+
+                // 2. Check token validity from API
+                const currentUserRequest = await axios.get(
+                    "http://localhost:2000/v1/users",
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                );
+
+                const currentUserResponse = currentUserRequest.data;
+
+                if (currentUserResponse.status) {
+                    setUser(currentUserResponse.data.user);
+                }
+            } catch (err) {
+                setIsLoggedIn(false);
+            }
+        };
+
+        fetchData();
         getUsers();
     }, [])
 
-    return (
+    return isLoggedIn ? (
         <div>
             {/* navbar */}
             <div className="na1 py-4 shadow">
@@ -176,7 +205,8 @@ function About() {
                 </Form>
             </Container>
         </div>
-    );
+    ) : (
+        <Navigate to="/login" replace />);
 }
 
 export default About;
