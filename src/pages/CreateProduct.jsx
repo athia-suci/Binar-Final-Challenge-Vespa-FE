@@ -1,38 +1,68 @@
-import React from "react";
-import { useRef, useState } from "react";
-import { useSelector } from "react-redux";
-import { Col, Row, Nav, Navbar, Form, Container, Button, Alert } from "react-bootstrap";
+// import { NavbarProduct } from "../components/navbar";
+import React, { useRef, useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { selectUser } from "../slices/userSlice";
-import { FiArrowLeft } from "react-icons/fi";
-import { BiPlus } from "react-icons/bi";
-import axios from "axios";
 import "../css/style.css";
+import {
+    Col,
+    Container,
+    Row,
+    Form,
+    Button,
+    Alert,
+    FloatingLabel,
+} from "react-bootstrap";
+import axios from "axios";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 
-export default function CreateProduct() {
+export default function InfoProduct() {
     const navigate = useNavigate();
-    const userRedux = useSelector(selectUser);
-    const [user] = useState(userRedux.creds);
-    const titleField = useRef("");
+    const nameField = useRef("");
+    const priceField = useRef("");
+    const categoryField = useRef("");
     const descriptionField = useRef("");
     const [pictureField, setPictureField] = useState();
+    const [isPublished, setIsPublished] = useState(Boolean);
+    const [sold, setSold] = useState(Boolean);
+
+    const [image, setImage] = useState();
+    const [preview, setPreview] = useState();
+    const fileInputRef = useRef();
 
     const [errorResponse, setErrorResponse] = useState({
         isError: false,
         message: "",
     });
 
-    const onCreate = async (e) => {
+
+    useEffect(() => {
+        if (image) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setPreview(reader.result);
+            }
+            reader.readAsDataURL(image);
+        } else {
+            setPreview(null);
+        }
+    }, [image]);
+
+    const onPost = async (e) => {
         e.preventDefault();
 
         try {
             const token = localStorage.getItem("token");
-            const postPayload = new FormData();
-            postPayload.append("title", titleField.current.value);
-            postPayload.append("description", descriptionField.current.value);
-            postPayload.append("picture", pictureField);
 
-            const createRequest = await axios.post(
+            const postPayload = new FormData();
+
+            postPayload.append("name", nameField.current.value);
+            postPayload.append("price", priceField.current.value);
+            postPayload.append("category", categoryField.current.value);
+            postPayload.append("description", descriptionField.current.value);
+            postPayload.append("picture", image);
+            postPayload.append("isPublished", isPublished);
+            postPayload.append("sold", sold);
+
+            const postRequest = await axios.post(
                 "http://localhost:2000/v1/product",
                 postPayload,
                 {
@@ -42,11 +72,13 @@ export default function CreateProduct() {
                     },
                 }
             );
+            console.log(postRequest);
+            const postResponse = postRequest.data;
+            console.log(postResponse)
 
-            const createResponse = createRequest.data;
-
-            if (createResponse.status) navigate("/");
+            if (postResponse.status) navigate("/daftarJual");
         } catch (err) {
+            console.log(err);
             const response = err.response.data;
 
             setErrorResponse({
@@ -57,89 +89,113 @@ export default function CreateProduct() {
     };
 
     return (
-        <div>
-            {/* navbar */}
-            <div className="na1 py-4 shadow">
-                <nav className="navbar navbar-expand-lg navbar-light bg-all">
-                    <Link to="/">
-                        <button className="na2 navbar-brand box"></button>
-                    </Link>
-                    <Navbar.Brand href="#" className="brand" />
-                    <div className="offcanvas-body" id="offcanvasRight">
-                        <div className="info1 navbar">
-                            <Nav className="text-dark"> Buat  Detail Produk </Nav>
-                        </div>
+        <>
+            {/* <NavbarProduct></NavbarProduct> */}
+            <Container className="justify-content-center mt-5">
+                <Row>
+                    <div className="col-3 text-center">
+                        <Link to="/daftarJual">
+                            <Button variant="light">
+                                <AiOutlineArrowLeft className="mb-1" />
+                            </Button>
+                        </Link>
                     </div>
-                </nav>
-            </div>
+                    <div className="col-6">
+                        <Form onSubmit={onPost} id="infoProduct" className="">
+                            <Form.Group className="mb-3">
+                                <Form.Label>Nama Produk</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Contoh: johndee@gmail.com"
+                                    className="radius-primary"
+                                    ref={nameField}
+                                // defaultValue={products.name}
+                                />
+                            </Form.Group>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Harga Produk</Form.Label>
+                                <Form.Control
+                                    type="harga"
+                                    placeholder="Rp 0,00"
+                                    className="radius-primary"
+                                    ref={priceField}
+                                // defaultValue={products.price}
+                                />
+                            </Form.Group>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Kategori</Form.Label>
+                                <Form.Select ref={categoryField} aria-label="Default select example">
+                                    <option>Pilih Kategori</option>
+                                    <option value="Hobi">Hobi</option>
+                                    <option value="Kendaraan">Kendaraan</option>
+                                    <option value="Baju">Baju</option>
+                                    <option value="Elektronik">Elektronik</option>
+                                    <option value="Keseheatan">Keseheatan</option>
+                                </Form.Select>
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="formBasicText">
+                                <Form.Label>Deskripsi</Form.Label>
+                                <textarea
+                                    class="form-control"
+                                    placeholder="Contoh: Jalan Ikan Hiu 33"
+                                    rows="3"
+                                    ref={descriptionField}
+                                // defaultValue={products.description}
+                                ></textarea>
+                            </Form.Group>
+                            <p>Foto Produk</p>
+                            <form-group className="mb-3">
+                                <Form.Label
+                                    className="upload-button-product"
+                                    for="exampleFormControlFile1"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        fileInputRef.current.click();
+                                    }}
+                                >
+                                    {preview ? (
+                                        <img src={preview} onClick={() => setImage(null)} alt="preview" />
+                                    ) : ("")}
+                                </Form.Label>
 
-            <Container className="my-5 w-50">
-                <div>
-                    <Link className="arrow2" to="/" style={{ color: "black" }}>
-                        <FiArrowLeft />
-                    </Link>
-                </div>
-                <div>
-                    <Nav className="info3 text-dark">Lengkapi Detail Produk</Nav>
-                </div>
-                <Form onSubmit={onCreate}>
-                    <Form className="border1 mb-3" style={{ fontWeight: "bold" }}>
-                        <Form.Label>Nama Produk</Form.Label>
-                        <Form.Control type="text" ref={titleField} placeholder="Nama" />
-                    </Form>
-                    <Form className="border1 mb-3" style={{ fontWeight: "bold" }}>
-                        <Form.Label>Harga Produk</Form.Label>
-                        <Form.Control type="text" ref={titleField} placeholder="Rp 0,00" />
-                    </Form>
-                    <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
-                        <Form.Label>Kategori</Form.Label>
-                        <select ref={descriptionField} className="form-select">
-                            <option hidden>Pilih Kategori</option>
-                            <option value="Hobi">Hobi</option>
-                            <option value="Kendaraan">Kendaraan</option>
-                            <option value="Baju">Baju</option>
-                            <option value="Elektronik">Elektronik</option>
-                            <option value="Kesehatan">Kesehatan</option>
-                        </select>
-                    </Form.Group>
-                    <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
-                        <Form.Label>Deskripsi</Form.Label>
-                        <Form.Control
-                            type="text"
-                            ref={descriptionField}
-                            placeholder="Contoh: Jalan Ikan Hiu 33"
-                            as="textarea"
-                            rows={3}
-                        />
-                    </Form.Group>
-                    <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
-                        Foto Produk
-                    </Form.Group>
-                    <Button className="mb-3 box2">
-                        <h2>
-                            <BiPlus
-                                className="plus"
-                                onChange={(e) => setPictureField(e.target.files[0])}
-                            />
-                        </h2>
-                    </Button>
-                    <Row>
-                        <Col>
-                            <Button href="/produk" className="myButton7 w-100" type="submit">
-                                Preview
-                            </Button>
-                        </Col>
-                        <Col>
-                            <Button href="/" className="myButton6 w-100" type="submit">
-                                Terbitkan
-                            </Button>
-                        </Col>
-                    </Row>
-                    {errorResponse.isError && (
-                        <Alert variant="danger">{errorResponse.message}</Alert>
-                    )}
-                </Form>
+                                <Form.Control
+                                    type="file"
+                                    class="form-control-file"
+                                    id="exampleFormControlFile1"
+                                    ref={fileInputRef}
+                                    accept="image/*"
+                                    onChange={(e) => {
+                                        const file = e.target.files[0];
+                                        if (file && file.type.substr(0, 5) === "image") {
+                                            setImage(file);
+                                        } else {
+                                            setImage(null);
+                                        }
+                                    }}
+                                    hidden
+                                />
+
+                            </form-group>
+                            <div className="mb-3 d-flex">
+                                <Button
+                                    className=" w-50 radius-primary bg-color-secondary"
+                                    type="submit"
+                                    onClick={(e) => setIsPublished(false)}
+                                >
+                                    Preview
+                                </Button>
+                                <Button
+                                    className=" w-50 radius-primary bg-color-secondary"
+                                    type="submit"
+                                    onClick={(e) => setIsPublished(true)}
+                                >
+                                    Terbitkan
+                                </Button>
+                            </div>
+                        </Form>
+                    </div>
+                </Row>
             </Container>
-        </div>
+        </>
     );
 }
