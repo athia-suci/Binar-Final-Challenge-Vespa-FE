@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import ProductPage from "./pages/ProductPage";
 import InfoProduct from "./pages/InfoProduct";
 import CreateProduct from "./pages/CreateProduct";
+import Profile from "./pages/Profile";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -23,6 +24,7 @@ render(
         <Route path="/produk" element={<ProductPage />} />
         <Route path="/infoproduk" element={<InfoProduct />} />
         <Route path="/buatproduk" element={<CreateProduct />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </Router>
   </Provider>,

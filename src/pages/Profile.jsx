@@ -119,6 +119,7 @@ function About() {
                         <Form.Control type="file" className="formCamera" onChange={(e) => {
                             setpictureField(e.target.files[0])
                         }} />
+
                     </button>
                     <Form className="border1 mb-3">
                         <Form.Label>Nama*</Form.Label>
