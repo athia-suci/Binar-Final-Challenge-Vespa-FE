@@ -89,7 +89,7 @@ function ProductPage() {
                         </div>
                         <Card className="card-descriptions">
                             <Card.Body className="card-body-descriptions">
-                                <Card.Tittle className="card-title1">Deskripsi</Card.Tittle>
+                                <Card.Title className="card-title1">Deskripsi</Card.Title>
                                 <Card.Text className="card-text1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Card.Text>
                             </Card.Body>
@@ -98,9 +98,9 @@ function ProductPage() {
                     <Col className="col-md-4">
                         <Card className="card-product cardproduct">
                             <Card.Body className="card-body cardbody">
-                                <Card.Tittle className="card-title1">Jam Tangan Casio</Card.Tittle>
+                                <Card.Title className="card-title1">Jam Tangan Casio</Card.Title>
                                 <Card.Text className="card-text1">Aksesoris</Card.Text>
-                                <Card.Tittle className="card-title1">Rp. 250.000</Card.Tittle>
+                                <Card.Title className="card-title1">Rp. 250.000</Card.Title>
                                 <Button style={colourButton} className="btn btn-terbitkan1" type="submit">
                                     Terbitkan
                                 </Button>
@@ -116,7 +116,7 @@ function ProductPage() {
                                         <img src={imageSeller} className="seller-image d-block" alt="Seller" />
                                     </Col>
                                     <Col className="col-md-10" style={{ paddingTop: 16, paddingBottom: 16, paddingLeft: 32 }}>
-                                        <Card.Tittle className="card-title1" style={{ marginBottom: 4 }}>Nama Penjual</Card.Tittle>
+                                        <Card.Title className="card-title1" style={{ marginBottom: 4 }}>Nama Penjual</Card.Title>
                                         <Card.Text className="card-text1">Kota</Card.Text>
                                     </Col>
                                 </Row>
