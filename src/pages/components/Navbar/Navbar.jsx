@@ -97,7 +97,13 @@ export function HomeNavbar() {
                                 <>
                                     <FiList className="icon-list-header m-3" />
                                     <FiBell className="icon-bell-header m-3" />
-                                    <FiUser className="icon-user-header m-3" />
+                                    <Button
+                                        variant="light"
+                                        className="mx-1"
+                                        href="/profile"
+                                    >
+                                        <FiUser className="icon-user-header m-3" />
+                                    </Button>
                                     <Button
                                         variant="danger"
                                         className="mx-3 "
