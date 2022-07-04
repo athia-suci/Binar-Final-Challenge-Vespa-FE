@@ -1,22 +1,29 @@
 import React from "react";
-import { Navbar, Container} from "react-bootstrap";
+import { Navbar, Container, Nav} from "react-bootstrap";
 import "../Navbar/navbar.css";
+import { useNavigate, Navigate, Link } from "react-router-dom";
 
 export function InfoSellerNavbar() {
 
 
     return (
         <>
-            <Navbar expand="lg" variant="light" >
-                <Container className="home-navbar" >
-                    <Navbar.Brand className="logo" href="/"></Navbar.Brand>
-                    <div className="me-5">
-                    <h3>Info Penawar</h3>
+            <div className="na1 py-4 shadow">
+                <nav className="navbar navbar-expand-lg navbar-light bg-all">
+                    <Link to="/">
+                        <button className="na2 navbar-brand box"></button>
+                    </Link>
+                    <Navbar.Brand href="#" className="brand" />
+                    <div className="offcanvas-body" id="offcanvasRight">
+                        <div className="info1 navbar">
+                            <Nav className="text-dark"> Info Penawaran </Nav>
+                        </div>
                     </div>
-                    <div>
-                    </div>
-                </Container>
-            </Navbar>
+                </nav>
+            </div>
+            <div className="mt-3">
+
+            </div>
         </>
     );
 }
