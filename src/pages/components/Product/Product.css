@@ -1,3 +1,11 @@
+.fw-bold {
+    margin-left: 2%;
+}
+
+.button-group {
+    margin-left: 2%;
+}
+
 .Card {
     /* card */
 
@@ -28,8 +36,15 @@
     width: 165.33px;
     height: 100px;
 
-    background:#FFFFFF;
+    background: #FFFFFF;
     border-radius: 4px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
 }
 
 
