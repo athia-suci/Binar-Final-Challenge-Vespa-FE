@@ -18,12 +18,9 @@ export default function CreateProduct() {
     const priceField = useRef("");
     const categoryField = useRef("");
     const descriptionField = useRef("");
-    const [pictureField, setPictureField] = useState();
+    const [pictureField, setpictureField] = useState();
     const [isPublished, setIsPublished] = useState(Boolean);
     const [sold, setSold] = useState(Boolean);
-
-    const [image, setImage] = useState();
-    const [preview, setPreview] = useState();
     const fileInputRef = useRef();
 
     const [errorResponse, setErrorResponse] = useState({
@@ -40,15 +37,6 @@ export default function CreateProduct() {
     }
 
     useEffect(() => {
-        if (image) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setPreview(reader.result);
-            }
-            reader.readAsDataURL(image);
-        } else {
-            setPreview(null);
-        }
         const fetchData = async () => {
             try {
                 // Check status user login
@@ -75,7 +63,7 @@ export default function CreateProduct() {
             }
         };
         fetchData();
-    }, [image])
+    }, [])
 
     const onPost = async (e) => {
         e.preventDefault();
@@ -87,7 +75,7 @@ export default function CreateProduct() {
             postPayload.append("price", priceField.current.value);
             postPayload.append("category", categoryField.current.value);
             postPayload.append("description", descriptionField.current.value);
-            postPayload.append("picture", image);
+            postPayload.append("picture", pictureField);
             postPayload.append("isPublished", isPublished);
             postPayload.append("sold", sold);
 
@@ -185,9 +173,6 @@ export default function CreateProduct() {
                             fileInputRef.current.click();
                         }}
                     >
-                        {preview ? (
-                            <img src={preview} onClick={() => setImage(null)} alt="preview" />
-                        ) : ("")}
                     </Form.Label>
 
                     <Form.Control
@@ -198,13 +183,7 @@ export default function CreateProduct() {
                         ref={fileInputRef}
                         accept="image/*"
                         onChange={(e) => {
-                            const file = e.target.files;
-                            if (file && file.type.substr(0, 5) === "image") {
-                                setImage(file);
-                            } else {
-                                setImage(null);
-                            }
-                            
+                            setpictureField(e.target.files[0])
                         }}
                         hidden
                     />
