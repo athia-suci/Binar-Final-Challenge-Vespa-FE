@@ -35,7 +35,7 @@ export function InfoSellerHome() {
             </Card>
             <div className="me-9">
             </div>
-            <div className="row-2">
+            <div className="marginLeft">
                 <h4>Daftar Produkmu yang Ditawar</h4>
             </div>
             <Card className="card-seller2">

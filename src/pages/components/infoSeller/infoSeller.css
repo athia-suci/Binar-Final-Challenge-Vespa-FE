@@ -19,6 +19,11 @@
     float: none;
     margin-bottom: 10px;
 }
+.marginLeft{
+    margin-left: 10em;
+    margin-bottom: 1em;
+    margin-top: 2em;
+}
 
 .button-info{
     width: 7em;
