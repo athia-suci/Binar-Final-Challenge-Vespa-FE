@@ -19,7 +19,23 @@ export function FloatButton() {
     };
 
     const handleJual = () => {
-        isLoggedIn ? data.town ? navigate('/buatproduk') : navigate(`/profile/${data.id}`) : navigate('/login')
+        isLoggedIn ? data.town ? navigate('/buatproduk') : navigate(`/profile`) : navigate('/login')
+    }
+
+    const getUsers = async () => {
+        try {
+            const token = localStorage.getItem("token");
+            const responseUsers = await axios.get(`http://localhost:2000/v1/users`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+            const dataUsers = await responseUsers.data.data;
+            setData(dataUsers)
+        } catch (err) {
+            console.log(err);
+        }
     }
 
 
@@ -48,6 +64,7 @@ export function FloatButton() {
             }
         };
         validateLogin();
+        getUsers();
     }, []);
 
     return (

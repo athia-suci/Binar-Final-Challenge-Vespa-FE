@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Nav, Navbar, Form, Container, Button, Alert } from "react-bootstrap";
-import { useNavigate, Link, useParams, Navigate } from "react-router-dom";
+import { useNavigate, Link, Navigate, } from "react-router-dom";
 import { FiCamera, FiArrowLeft } from "react-icons/fi";
 import axios from "axios";
 import "../css/style.css";
@@ -19,12 +19,12 @@ function About() {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [user, setUser] = useState({});
     const [data, setData] = useState([]);
-    const { id } = useParams();
     const nameField = useRef("");
     const townField = useRef("");
     const addressField = useRef("");
     const phoneField = useRef("");
     const [pictureField, setpictureField] = useState();
+    const fileInputRef = useRef();
 
     const [errorResponse, setErrorResponse] = useState({
         isError: false,
@@ -41,13 +41,9 @@ function About() {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-            console.log(responseUsers.data.data);
             const dataUsers = await responseUsers.data.data;
-
             setData(dataUsers)
-            console.log(dataUsers);
         } catch (err) {
-            console.log(err);
         }
     }
 
@@ -75,19 +71,23 @@ function About() {
                     },
                 }
             );
-            console.log(updateRequest.data.data)
+            console.log(updateResponse)
             const updateResponse = updateRequest.data.data;
+            
+            console.log(updateResponse.status)
+            if (updateResponse.status) navigate("/");
 
-            if (updateResponse.status) navigate("/login");
+            
+
         } catch (err) {
             const response = err.response.data;
-
             setErrorResponse({
                 isError: true,
                 message: response.message,
             });
         }
     };
+    
 
 
     useEffect(() => {
@@ -148,16 +148,25 @@ function About() {
                     <Nav className="info2 text-dark">Lengkapi Info Akun</Nav>
                 </div>
                 <Form onSubmit={onUpdate}>
-                    <button className="mb-3 box1 buttonCamera" >
-                        <h2>
-                            <FiCamera
-                                className="camera"
-                            />
-                        </h2>
-                        <Form.Control type="file" className="formCamera" onChange={(e) => {
-                            setpictureField(e.target.files[0])
-                        }} />
-
+                    <button className="mb-3 box1" >
+                        <Form.Label
+                            className="upload-button-product2"
+                            for="exampleFormControlFile1"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                fileInputRef.current.click();
+                            }}
+                        >
+                        </Form.Label>
+                        <Form.Control
+                            type="file"
+                            class="form-control-file"
+                            id="exampleFormControlFile1"
+                            ref={fileInputRef}
+                            accept="image/*"
+                            onChange={(e) => {
+                                setpictureField(e.target.files[0])
+                            }} hidden />
                     </button>
                     <Form className="border1 mb-3">
                         <Form.Label>Nama*</Form.Label>
@@ -165,7 +174,7 @@ function About() {
                     </Form>
                     <Form.Group className="mb-3">
                         <Form.Label>Kota*</Form.Label>
-                        <select style={formBorder} defaultValue={data.town} className="form-select">
+                        <select style={formBorder} ref={townField} className="form-select">
                             <option hidden>Pilih Kota</option>
                             <option ref={townField} selected={data.town === "dkijakarta" ? "selected" : ""} value="dkijakarta">DKI Jakarta</option>
                             <option ref={townField} selected={data.town === "jawabarat" ? "selected" : ""} value="jawabarat">Jawa Barat</option>
