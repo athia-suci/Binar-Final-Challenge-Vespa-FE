@@ -63,11 +63,11 @@ export function Product() {
                     {post.map((post) =>
                         <Col key={post.id} className="mb-3">
                             <Card >
-                                <Card.Img variant="top" className="p-2" src={`http://localhost:2000/public/files/${post.picture}`} style={{ maxHeight: "100px", objectFit: "cover" }} />
+                                <Card.Img variant="top" className="p-2 cardimg" src={`http://localhost:2000/public/files/${post.picture}`} />
                                 <Card.Body>
                                     <Card.Title className="cut-text">{post.name}</Card.Title>
-                                    <p className="text-black-50">{post.category}</p>
-                                    <Card.Text>{post.price}</Card.Text>
+                                    <p className="text-black-50 categorycard">{post.category}</p>
+                                    <Card.Text>Rp {post.price}</Card.Text>
                                 </Card.Body>
                             </Card>
                         </Col>,

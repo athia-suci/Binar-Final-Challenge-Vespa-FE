@@ -1,22 +1,106 @@
-/* #btn-category Button {
-    cursor: pointer;
-    color: #E2D4F0
-    ;
+.Card {
+    /* card */
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 8px 16px;
+    gap: 8px;
+
+    width: 181.33px;
+    height: 198px;
+
+    /* Neutral/01 */
+
+    background: #FFFFFF;
+    /* Shadow/Low */
+
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
 }
 
-#btn-category .active,
-Button:hover {
-    background-color: #7126B5
-} */
+.cardimg {
+    /* Rectangle 23 */
+
+
+    width: 165.33px;
+    height: 100px;
+
+    background:#FFFFFF;
+    border-radius: 4px;
+}
+
+
+.Card.Body {
+    /* Frame 149 */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 8px;
+
+    width: 165.33px;
+    height: 66px;
+
+}
 
 .cut-text {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    width: 130px;
-    height: 1.2em;
-    white-space: nowrap;
+    /* Jam Tangan Casio */
+    width: 165.33px;
+    height: 20px;
+
+    /* Body/14/Regular */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+
+    /* identical to box height, or 143% */
+    color: #000000;
+
 }
 
-.rowcard{
+.Card.Text {
+    /* Rp 250.000 */
+    width: 165.33px;
+    height: 20px;
+
+    /* Body/14/Regular */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    /* identical to box height, or 143% */
+
+    color: #000000;
+}
+
+.categorycard {
+    /* Aksesoris */
+
+
+    width: 165.33px;
+    height: 14px;
+
+    /* Body/10/Regular */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 14px;
+    /* identical to box height, or 140% */
+
+
+    /* Neutral/03 */
+    color: #8A8A8A;
+
+}
+
+.rowcard {
     margin-bottom: 50 px;
 }
