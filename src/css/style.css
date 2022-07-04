@@ -462,7 +462,15 @@
 
 
 .upload-button-product {
-    /* background-image: url(../assets/icons/addIcon.png); */
+    background-image: url(../images/Group1.png);
+    background-size: auto;
+    width: 96px;
+    height: 96px;
+    cursor: pointer;
+    margin-right: 210px;
+}
+.upload-button-product2 {
+    background-image: url(../images/Group2.png);
     background-size: auto;
     width: 96px;
     height: 96px;
@@ -470,6 +478,14 @@
     margin-right: 210px;
 }
 
+#infoProduct img {
+    object-fit: cover;
+    width: 96px;
+    height: 96px;
+    cursor: pointer;
+    margin-left: 100px;
+    border-radius: 12px;
+}
 #infoProduct img {
     object-fit: cover;
     width: 96px;

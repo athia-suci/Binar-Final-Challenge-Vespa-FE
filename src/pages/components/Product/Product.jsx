@@ -24,10 +24,7 @@ export function Product() {
     useEffect(() => {
         const postData = async () => {
             const response = await axios.get(`http://localhost:2000/v1/product/all?isPublish=true&&sold=false${categories}`);
-            console.log(response);
             const data = await response.data.data.result;
-            console.log(data);
-
             setPost(data);
         };
         postData();
@@ -67,7 +64,7 @@ export function Product() {
                                 <Card.Body>
                                     <Card.Title className="cut-text">{post.name}</Card.Title>
                                     <p className="text-black-50">{post.category}</p>
-                                    <Card.Text>{post.price}</Card.Text>
+                                    <Card.Text>Rp {post.price}</Card.Text>
                                 </Card.Body>
                             </Card>
                         </Col>,

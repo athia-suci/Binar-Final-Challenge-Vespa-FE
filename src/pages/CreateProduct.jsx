@@ -105,7 +105,7 @@ export default function CreateProduct() {
             const postResponse = postRequest.data;
             console.log(postResponse)
 
-            if (postResponse.status) navigate("/daftarJual");
+            if (postResponse.status) navigate("/");
         } catch (err) {
             console.log(err);
             const response = err.response.data;
@@ -177,19 +177,34 @@ export default function CreateProduct() {
                     <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
                         Foto Produk
                     </Form.Group>
+                    <Form.Label
+                        className="upload-button-product"
+                        for="exampleFormControlFile1"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            fileInputRef.current.click();
+                        }}
+                    >
+                        {preview ? (
+                            <img src={preview} onClick={() => setImage(null)} alt="preview" />
+                        ) : ("")}
+                    </Form.Label>
+
                     <Form.Control
                         type="file"
+                        multiple
                         class="form-control-file"
                         id="exampleFormControlFile1"
                         ref={fileInputRef}
                         accept="image/*"
                         onChange={(e) => {
-                            const file = e.target.files[0];
+                            const file = e.target.files;
                             if (file && file.type.substr(0, 5) === "image") {
                                 setImage(file);
                             } else {
                                 setImage(null);
                             }
+                            
                         }}
                         hidden
                     />
