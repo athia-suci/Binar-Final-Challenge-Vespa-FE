@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Nav, Navbar, Form, Container, Button, Alert } from "react-bootstrap";
-import { useNavigate, Link, useParams, Navigate } from "react-router-dom";
+import { useNavigate, Link, Navigate, } from "react-router-dom";
 import { FiCamera, FiArrowLeft } from "react-icons/fi";
 import axios from "axios";
 import "../css/style.css";
@@ -19,7 +19,6 @@ function About() {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [user, setUser] = useState({});
     const [data, setData] = useState([]);
-    const { id } = useParams();
     const nameField = useRef("");
     const townField = useRef("");
     const addressField = useRef("");
@@ -41,13 +40,9 @@ function About() {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-            console.log(responseUsers.data.data);
             const dataUsers = await responseUsers.data.data;
-
             setData(dataUsers)
-            console.log(dataUsers);
         } catch (err) {
-            console.log(err);
         }
     }
 
@@ -75,12 +70,12 @@ function About() {
                     },
                 }
             );
-            console.log(updateRequest.data.data)
             const updateResponse = updateRequest.data.data;
 
-            if (updateResponse.status) navigate("/login");
+            if (updateResponse.status) navigate("/");
         } catch (err) {
             const response = err.response.data;
+            console.log(response)
 
             setErrorResponse({
                 isError: true,
@@ -165,7 +160,7 @@ function About() {
                     </Form>
                     <Form.Group className="mb-3">
                         <Form.Label>Kota*</Form.Label>
-                        <select style={formBorder} defaultValue={data.town} className="form-select">
+                        <select style={formBorder} ref={townField} className="form-select">
                             <option hidden>Pilih Kota</option>
                             <option ref={townField} selected={data.town === "dkijakarta" ? "selected" : ""} value="dkijakarta">DKI Jakarta</option>
                             <option ref={townField} selected={data.town === "jawabarat" ? "selected" : ""} value="jawabarat">Jawa Barat</option>
