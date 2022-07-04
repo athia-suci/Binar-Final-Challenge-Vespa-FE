@@ -21,12 +21,12 @@ render(
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/produk" element={<ProductPage />} />
-        <Route path="/infoproduk" element={<InfoProduct />} />
+        <Route path="/previewproduk" element={<ProductPage />} />
+        <Route path="/updateproduk" element={<InfoProduct />} />
         <Route path="/buatproduk" element={<CreateProduct />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
     </Router>
   </Provider>,
   root
-);
+)
