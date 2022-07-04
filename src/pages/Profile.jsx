@@ -24,6 +24,7 @@ function About() {
     const addressField = useRef("");
     const phoneField = useRef("");
     const [pictureField, setpictureField] = useState();
+    const fileInputRef = useRef();
 
     const [errorResponse, setErrorResponse] = useState({
         isError: false,
@@ -70,19 +71,23 @@ function About() {
                     },
                 }
             );
+            console.log(updateResponse)
             const updateResponse = updateRequest.data.data;
-
+            
+            console.log(updateResponse.status)
             if (updateResponse.status) navigate("/");
+
+            
+
         } catch (err) {
             const response = err.response.data;
-            console.log(response)
-
             setErrorResponse({
                 isError: true,
                 message: response.message,
             });
         }
     };
+    
 
 
     useEffect(() => {
@@ -143,16 +148,25 @@ function About() {
                     <Nav className="info2 text-dark">Lengkapi Info Akun</Nav>
                 </div>
                 <Form onSubmit={onUpdate}>
-                    <button className="mb-3 box1 buttonCamera" >
-                        <h2>
-                            <FiCamera
-                                className="camera"
-                            />
-                        </h2>
-                        <Form.Control type="file" className="formCamera" onChange={(e) => {
-                            setpictureField(e.target.files[0])
-                        }} />
-
+                    <button className="mb-3 box1" >
+                        <Form.Label
+                            className="upload-button-product2"
+                            for="exampleFormControlFile1"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                fileInputRef.current.click();
+                            }}
+                        >
+                        </Form.Label>
+                        <Form.Control
+                            type="file"
+                            class="form-control-file"
+                            id="exampleFormControlFile1"
+                            ref={fileInputRef}
+                            accept="image/*"
+                            onChange={(e) => {
+                                setpictureField(e.target.files[0])
+                            }} hidden />
                     </button>
                     <Form className="border1 mb-3">
                         <Form.Label>Nama*</Form.Label>
