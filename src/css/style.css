@@ -228,7 +228,111 @@
     
 }
 
+/* daftar jual */
+.home-nav.daftar-jual .container h3 {
+    display: block;
+  }
 
+  .page-daftar-jual h5 {
+    display: none;
+  }
 
+  .page-daftar-jual.container {
+    margin-top: 0 !important;
+    width: 100% !important;
+  }
 
+  .home-nav.daftar-jual .container {
+    flex-direction: row-reverse;
+    gap: 20px;
+  }
 
+  .navigasi-user .card img {
+    width: 15% !important;
+  }
+  /* category */
+  .category div button.button-sell {
+    width: 25%;
+    margin: 0 37.5%;
+  }
+
+  .category .button-category {
+    overflow-x: scroll;
+  }
+  .category .button-category::-webkit-scrollbar {
+    width: 0;
+  }
+
+  .card-sidebar-catergory_body {
+    position: absolute;
+    display: flex;
+    gap: 10px;
+    top: 30%;
+    left: 0;
+  }
+
+  .sidebar-category .card-sidebar-category.card {
+    position: relative;
+    overflow-x: auto;
+    height: 60px;
+  }
+
+  .sidebar-category .card-sidebar-category.card h6 {
+    display: none;
+  }
+
+  .sidebar-category .card-sidebar-category button {
+    background-color: rgba(226, 212, 240, 1) !important;
+    padding: 0 10px !important;
+    border-radius: 12px;
+    height: 20%;
+    border-bottom: transparent !important;
+  }
+  /* card */
+  .card-content {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 20px;
+    grid-auto-flow: row;
+  }
+
+  /* content */
+  .buttons-user {
+    position: absolute;
+    z-index: 999;
+    bottom: -110%;
+  }
+
+  .user-profile {
+    width: 140%;
+    margin-left: -47px;
+  }
+
+  .card-product-carousel {
+    width: 150%;
+    margin: -30%;
+  }
+
+  .card-product-carousel .slider-product .owl-theme .item.active {
+    width: 150% !important;
+  }
+
+  .card-description {
+    width: 140%;
+    margin-left: -47px;
+  }
+
+  .buttons-user div {
+    position: fixed;
+    width: 90%;
+    left: 5%;
+  }
+
+  .buttons-user div button:nth-child(2) {
+    display: none;
+  }
+
+  .content-product {
+    grid-template-columns: auto auto;
+    margin-top: 20px;
+  }
