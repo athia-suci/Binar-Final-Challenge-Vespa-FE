@@ -1,7 +1,7 @@
 import React from "react";
 import { DaftarJualNavbar } from "../components/Navbar/Navbar";
 import { SidebarUser, SidebarCategory } from "../components/Sidebar/Sidebar";
-import { Content } from "../components/Content";
+import { Content } from "../components/Content/Content";
 import { Container, Row, Col } from "react-bootstrap";
 import "../css/style.css";
 
